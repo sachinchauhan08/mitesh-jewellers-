@@ -71,7 +71,7 @@ export default async function DashboardPage({
           year: "numeric",
         })}
         title={`${greeting()}, ${firstName}`}
-        description={`${data.totals.invoiceCount} invoices billed across ${data.branches.length} showrooms. Live metal rates drive every price on the floor.`}
+        description={`${data.totals.invoiceCount} invoices billed at ${data.branches.length === 1 ? "the Babra showroom" : `${data.branches.length} showrooms`}. Live metal rates drive every price on the floor.`}
         actions={
           <>
             <BranchFilter branches={data.branches} />

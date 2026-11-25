@@ -10,8 +10,8 @@ export type CartLine = {
   qty: number;
 };
 
-const KEY = "aura-store-cart-v1";
-const EVENT = "aura-cart-change";
+const KEY = "mitesh-store-cart-v1";
+const EVENT = "mitesh-cart-change";
 
 export function readCart(): CartLine[] {
   if (typeof window === "undefined") return [];

@@ -11,16 +11,16 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 const DEMOS = [
-  { label: "Administrator", email: "admin@aurajewels.in" },
-  { label: "Store Manager", email: "manager@aurajewels.in" },
-  { label: "Cashier", email: "cashier@aurajewels.in" },
+  { label: "Administrator", email: "admin@miteshjewellers.in" },
+  { label: "Store Manager", email: "manager@miteshjewellers.in" },
+  { label: "Cashier", email: "cashier@miteshjewellers.in" },
 ];
 
 function SignInForm() {
   const router = useRouter();
   const params = useSearchParams();
   const redirectTo = params.get("redirectTo") || "/dashboard";
-  const [email, setEmail] = useState("admin@aurajewels.in");
+  const [email, setEmail] = useState("admin@miteshjewellers.in");
   const [password, setPassword] = useState("Admin@12345");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -41,7 +41,7 @@ function SignInForm() {
       setLoading(false);
       return;
     }
-    toast.success("Welcome back to Aura Jewels");
+    toast.success("Welcome back to Mitesh Jewellers");
     router.replace(redirectTo);
     router.refresh();
   }

@@ -137,7 +137,7 @@ export default async function InvoiceDetailPage({
                 <Button variant="ghost" size="sm" className="w-full text-xs" asChild>
                   <a
                     href={`https://wa.me/91${invoice.customer.mobile}?text=${encodeURIComponent(
-                      `Namaste ${invoice.customer.name}, thank you for shopping at Aura Jewels.`,
+                      `Namaste ${invoice.customer.name}, thank you for shopping at Mitesh Jewellers.`,
                     )}`}
                     target="_blank"
                     rel="noreferrer"

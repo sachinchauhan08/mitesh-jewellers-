@@ -103,7 +103,7 @@ export function InvoiceActions({
       return;
     }
     const link = `${window.location.origin}/print/invoice/${invoice.invoice.id}`;
-    const message = `Namaste ${invoice.customer?.name ?? "ji"}, thank you for shopping at Aura Jewels. Invoice ${invoice.invoice.invoiceNo} for ₹${number(invoice.invoice.totalPaise)}. View: ${link}`;
+    const message = `Namaste ${invoice.customer?.name ?? "ji"}, thank you for shopping at Mitesh Jewellers. Invoice ${invoice.invoice.invoiceNo} for ₹${number(invoice.invoice.totalPaise)}. View: ${link}`;
     window.open(`https://wa.me/91${mobile}?text=${encodeURIComponent(message)}`, "_blank");
   }
 

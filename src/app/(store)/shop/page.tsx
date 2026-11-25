@@ -99,10 +99,8 @@ export default async function ShopPage({
   return (
     <StoreShell rates={ticker}>
       <div className="mx-auto max-w-6xl px-4 py-10">
-        <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-gold-deep">
-          The collection
-        </p>
-        <h1 className="mt-2 font-display text-3xl sm:text-4xl">
+        <p className="eyebrow">The collection</p>
+        <h1 className="mt-3 font-display text-3xl sm:text-[42px]">
           {activeCategory ? activeCategory.name : "All jewellery"}
         </h1>
         <p className="mt-2 text-xs text-muted-foreground">
@@ -110,7 +108,7 @@ export default async function ShopPage({
           today&apos;s authorised rate
         </p>
 
-        <form className="mt-5 flex flex-wrap items-end gap-2 rounded-xl border border-border bg-card p-3">
+        <form className="mt-6 flex flex-wrap items-end gap-3 rounded-2xl border border-border bg-card p-4 shadow-soft">
           <div className="min-w-[180px] flex-1">
             <label htmlFor="shop-q" className="text-[11px] font-medium text-muted-foreground">
               Search
@@ -204,11 +202,11 @@ export default async function ShopPage({
           )}
         </form>
 
-        <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+        <div className="mt-7 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
           {priced.map(({ product, categoryName, pricePaise }) => (
             <div
               key={product.id}
-              className="group overflow-hidden rounded-xl border border-border bg-card"
+              className="group overflow-hidden rounded-2xl border border-border bg-card card-lift"
             >
               <Link href={`/shop/${product.slug}`} className="block aspect-square overflow-hidden bg-muted">
                 {product.images[0] ? (
@@ -220,16 +218,16 @@ export default async function ShopPage({
                   />
                 ) : null}
               </Link>
-              <div className="p-3">
-                <p className="text-[10px] uppercase tracking-[0.1em] text-gold-deep">{categoryName}</p>
-                <Link href={`/shop/${product.slug}`} className="mt-0.5 block truncate text-xs font-medium hover:underline">
+              <div className="p-4">
+                <p className="text-[9px] uppercase tracking-[0.16em] text-gold-deep">{categoryName}</p>
+                <Link href={`/shop/${product.slug}`} className="mt-1 block truncate text-[13px] font-medium hover:underline">
                   {product.name}
                 </Link>
                 <p className="mt-0.5 text-[10px] uppercase tracking-[0.1em] text-muted-foreground">
                   {product.purity} · {(product.netWeightMg / 1000).toFixed(3)} g
                 </p>
-                <div className="mt-2 flex items-center justify-between gap-2">
-                  <p className="tabular text-sm font-semibold">{paise(pricePaise)}</p>
+                <div className="mt-2.5 flex items-center justify-between gap-2">
+                  <p className="tabular text-[15px] font-semibold">{paise(pricePaise)}</p>
                   <AddToCart
                     line={{
                       productId: product.id,

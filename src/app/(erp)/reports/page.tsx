@@ -158,7 +158,7 @@ export default async function ReportsPage({
         eyebrow="Business intelligence"
         title="Reports"
         description="Sales, purchases, GST and receivables for the selected period."
-        actions={<ReportExport rows={exportRows} filename={`aura-sales-${isoDate(from)}-${isoDate(to)}`} />}
+        actions={<ReportExport rows={exportRows} filename={`mitesh-sales-${isoDate(from)}-${isoDate(to)}`} />}
       />
 
       <Card className="mb-4 p-3">

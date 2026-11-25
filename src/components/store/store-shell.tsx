@@ -3,17 +3,18 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { Menu, ShoppingBag, X } from "lucide-react";
+import { Clock, MapPin, Menu, Phone, ShoppingBag, X } from "lucide-react";
+import { BRAND } from "@/lib/brand";
 import { paise } from "@/lib/format";
 import { CartProvider, useCart } from "@/components/store/cart-provider";
 import { Button } from "@/components/ui/button";
 
 const NAV = [
-  { href: "/", label: "Home" },
-  { href: "/shop", label: "Shop" },
+  { href: "/shop", label: "All jewellery" },
   { href: "/shop?metal=gold", label: "Gold" },
   { href: "/shop?metal=silver", label: "Silver" },
-  { href: "/about", label: "Our story" },
+  { href: "/shop?category=bridal-jewellery", label: "Bridal" },
+  { href: "/about", label: "The house" },
   { href: "/contact", label: "Visit us" },
 ];
 
@@ -26,18 +27,24 @@ export function StoreShell({
 }) {
   return (
     <CartProvider>
-      <div className="flex min-h-screen flex-col">
+      <div className="flex min-h-screen flex-col bg-background">
         <div className="bg-primary text-primary-foreground">
-          <div className="mx-auto flex max-w-6xl items-center gap-4 overflow-x-auto px-4 py-1.5 text-[11px] no-scrollbar">
-            <span className="shrink-0 font-medium tracking-[0.14em] uppercase opacity-70">
-              Today&apos;s rates
+          <div className="mx-auto flex max-w-6xl items-center gap-5 overflow-x-auto px-4 py-2 text-[11px] no-scrollbar">
+            <span className="shrink-0 uppercase tracking-[0.24em] text-primary-foreground/55">
+              Rate card
             </span>
             {rates.map((rate) => (
               <span key={rate.label} className="shrink-0 tabular">
-                <span className="opacity-70">{rate.label}</span>{" "}
+                <span className="text-primary-foreground/60">{rate.label}</span>{" "}
                 <span className="font-medium">{rate.value}</span>
               </span>
             ))}
+            <span className="ml-auto hidden shrink-0 items-center gap-1.5 text-primary-foreground/60 sm:flex">
+              <Phone className="size-3" />
+              <a href={BRAND.phoneHref} className="hover:text-primary-foreground">
+                {BRAND.phone}
+              </a>
+            </span>
           </div>
         </div>
         <StoreHeader />
@@ -54,41 +61,51 @@ function StoreHeader() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border/70 bg-background/90 backdrop-blur">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4">
-        <Link href="/" className="flex items-center gap-2">
-          <span className="flex size-9 items-center justify-center rounded-full border border-gold/50 bg-gold-soft text-sm font-semibold text-gold-deep">
-            A
+    <header className="sticky top-0 z-40 border-b border-border/80 bg-background/85 backdrop-blur-xl">
+      <div className="mx-auto flex h-[72px] max-w-6xl items-center justify-between gap-4 px-4">
+        <Link href="/" className="group flex items-center gap-3">
+          <span className="relative flex size-10 items-center justify-center rounded-full border border-gold/50 bg-gradient-to-br from-gold-soft to-card">
+            <span className="font-display text-lg leading-none text-gold-deep">M</span>
           </span>
-          <span className="font-display text-xl leading-none tracking-wide">Aura Jewels</span>
+          <span className="leading-none">
+            <span className="block font-display text-[22px] tracking-[0.02em]">
+              {BRAND.name}
+            </span>
+            <span className="mt-1 block text-[9px] uppercase tracking-[0.3em] text-muted-foreground">
+              {BRAND.tagline}
+            </span>
+          </span>
         </Link>
 
-        <nav className="hidden items-center gap-6 lg:flex" aria-label="Store">
+        <nav className="hidden items-center gap-7 lg:flex" aria-label="Store">
           {NAV.map((item) => (
             <Link
               key={item.label}
               href={item.href}
-              className={`text-xs font-medium tracking-wide transition-colors hover:text-gold-deep ${
+              className={`relative text-[12px] font-medium tracking-wide transition-colors hover:text-gold-deep ${
                 pathname === item.href ? "text-gold-deep" : "text-muted-foreground"
               }`}
             >
               {item.label}
+              {pathname === item.href ? (
+                <span className="absolute -bottom-2 left-0 h-px w-full bg-gold" />
+              ) : null}
             </Link>
           ))}
         </nav>
 
         <div className="flex items-center gap-1">
-          <Button asChild variant="ghost" size="sm" className="hidden h-9 text-xs sm:inline-flex">
+          <Button asChild variant="ghost" size="sm" className="hidden h-9 text-[11px] tracking-wide sm:inline-flex">
             <Link href="/auth/sign-in">Staff login</Link>
           </Button>
           <Link
             href="/cart"
-            className="relative inline-flex size-10 items-center justify-center rounded-full hover:bg-muted"
-            aria-label={`Cart, ${count} item${count === 1 ? "" : "s"}`}
+            className="relative inline-flex size-10 items-center justify-center rounded-full border border-transparent transition-colors hover:border-border hover:bg-card"
+            aria-label={`Bag, ${count} item${count === 1 ? "" : "s"}`}
           >
-            <ShoppingBag className="size-5" />
+            <ShoppingBag className="size-[18px]" />
             {count > 0 ? (
-              <span className="absolute -right-0.5 -top-0.5 flex size-5 items-center justify-center rounded-full bg-gold text-[10px] font-semibold text-white">
+              <span className="absolute -right-0.5 -top-0.5 flex size-[18px] items-center justify-center rounded-full bg-gold text-[10px] font-semibold text-white">
                 {count}
               </span>
             ) : null}
@@ -134,55 +151,85 @@ function StoreHeader() {
 function StoreFooter() {
   const { totalPaise, count } = useCart();
   return (
-    <footer className="mt-16 border-t border-border bg-secondary/50">
-      <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:grid-cols-2 lg:grid-cols-4">
+    <footer className="mt-20 border-t border-border bg-primary text-primary-foreground">
+      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:grid-cols-2 lg:grid-cols-4">
         <div>
-          <p className="font-display text-lg">Aura Jewels</p>
-          <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
-            BIS-hallmarked gold, natural diamonds and hand-finished bridal jewellery, made in
-            Mumbai since 1978.
+          <p className="font-display text-2xl tracking-wide">{BRAND.name}</p>
+          <p className="mt-1 text-[10px] uppercase tracking-[0.26em] text-primary-foreground/50">
+            {BRAND.tagline} · {BRAND.city}, {BRAND.state}
+          </p>
+          <p className="mt-4 text-xs leading-relaxed text-primary-foreground/60">
+            Hallmarked gold and silver jewellery, priced from the day&apos;s authorised rate with
+            making charges shown in full.
           </p>
         </div>
         <div>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
-            Shop
+          <p className="text-[10px] uppercase tracking-[0.24em] text-primary-foreground/45">
+            Explore
           </p>
-          <ul className="mt-3 space-y-2 text-xs">
-            <li><Link href="/shop" className="hover:text-gold-deep">All jewellery</Link></li>
-            <li><Link href="/shop?metal=gold" className="hover:text-gold-deep">Gold</Link></li>
-            <li><Link href="/shop?metal=silver" className="hover:text-gold-deep">Silver</Link></li>
-            <li><Link href="/shop?metal=platinum" className="hover:text-gold-deep">Platinum</Link></li>
+          <ul className="mt-4 space-y-2.5 text-xs text-primary-foreground/70">
+            <li><Link href="/shop" className="hover:text-primary-foreground">All jewellery</Link></li>
+            <li><Link href="/shop?metal=gold" className="hover:text-primary-foreground">Gold</Link></li>
+            <li><Link href="/shop?metal=silver" className="hover:text-primary-foreground">Silver</Link></li>
+            <li><Link href="/shop?category=bridal-jewellery" className="hover:text-primary-foreground">Bridal</Link></li>
           </ul>
         </div>
         <div>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
-            Help
+          <p className="text-[10px] uppercase tracking-[0.24em] text-primary-foreground/45">
+            Visit the store
           </p>
-          <ul className="mt-3 space-y-2 text-xs">
-            <li><Link href="/about" className="hover:text-gold-deep">Our story</Link></li>
-            <li><Link href="/contact" className="hover:text-gold-deep">Showrooms</Link></li>
-            <li><Link href="/contact" className="hover:text-gold-deep">Hallmark &amp; buyback</Link></li>
-            <li><Link href="/auth/sign-in" className="hover:text-gold-deep">Staff login</Link></li>
+          <ul className="mt-4 space-y-3 text-xs text-primary-foreground/70">
+            <li className="flex gap-2">
+              <MapPin className="mt-0.5 size-3.5 shrink-0 text-gold" />
+              <a href={BRAND.mapsHref} target="_blank" rel="noreferrer" className="hover:text-primary-foreground">
+                {BRAND.address}
+              </a>
+            </li>
+            <li className="flex gap-2">
+              <Clock className="mt-0.5 size-3.5 shrink-0 text-gold" />
+              <span>
+                {BRAND.hours[0].days}: {BRAND.hours[0].time}
+                <br />
+                {BRAND.hours[1].days}: {BRAND.hours[1].time}
+              </span>
+            </li>
+            <li className="flex gap-2">
+              <Phone className="mt-0.5 size-3.5 shrink-0 text-gold" />
+              <a href={BRAND.phoneHref} className="hover:text-primary-foreground">{BRAND.phone}</a>
+            </li>
           </ul>
         </div>
         <div>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+          <p className="text-[10px] uppercase tracking-[0.24em] text-primary-foreground/45">
             Your bag
           </p>
-          <p className="mt-3 text-xs text-muted-foreground">
+          <p className="mt-4 text-xs text-primary-foreground/70">
             {count > 0
               ? `${count} item${count === 1 ? "" : "s"} · ${paise(totalPaise)}`
               : "Your bag is empty."}
           </p>
-          <Link href="/cart" className="mt-2 inline-block text-xs font-medium text-gold-deep hover:underline">
+          <Link href="/cart" className="mt-2 inline-block text-xs font-medium text-gold hover:underline">
             Review bag →
           </Link>
+          <div className="mt-5 flex flex-wrap gap-1.5">
+            {BRAND.profiles.map((profile) => (
+              <a
+                key={profile.label}
+                href={profile.href}
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-full border border-primary-foreground/20 px-2.5 py-1 text-[10px] text-primary-foreground/70 transition-colors hover:border-gold/60 hover:text-primary-foreground"
+              >
+                {profile.label}
+              </a>
+            ))}
+          </div>
         </div>
       </div>
-      <div className="border-t border-border/70">
-        <div className="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-4 text-[11px] text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} Aura Jewels Pvt. Ltd. All prices inclusive of GST.</p>
-          <p>GSTIN 27AABCA1234M1Z5 · BIS Hallmark certified</p>
+      <div className="border-t border-primary-foreground/10">
+        <div className="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-4 text-[10px] text-primary-foreground/45 sm:flex-row sm:items-center sm:justify-between">
+          <p>© {new Date().getFullYear()} {BRAND.name}. All prices inclusive of GST.</p>
+          <p>GSTIN {BRAND.gstin} · {BRAND.payments.join(" · ")}</p>
         </div>
       </div>
     </footer>

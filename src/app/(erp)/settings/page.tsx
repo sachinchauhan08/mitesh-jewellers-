@@ -28,7 +28,7 @@ export default async function SettingsPage() {
       />
       <SettingsClient
         initial={{
-          company_name: values.company_name ?? "Aura Jewels Pvt. Ltd.",
+          company_name: values.company_name ?? "Mitesh Jewellers",
           company_address: values.company_address ?? "",
           company_gstin: values.company_gstin ?? "",
           company_phone: values.company_phone ?? "",

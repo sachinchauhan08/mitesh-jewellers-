@@ -52,39 +52,23 @@ async function main() {
     .insert(s.branches)
     .values([
       {
-        name: "Aura Jewels — Zaveri Bazaar",
-        code: "MUM",
-        address: "12 Kalbadevi Road, Zaveri Bazaar",
-        city: "Mumbai",
-        phone: "022-22401122",
-        gstin: "27AABCA1234M1Z5",
-      },
-      {
-        name: "Aura Jewels — Laxmi Road",
-        code: "PUN",
-        address: "480 Laxmi Road, Sadashiv Peth",
-        city: "Pune",
-        phone: "020-24453311",
-        gstin: "27AABCA1234M1Z5",
-      },
-      {
-        name: "Aura Jewels — Ring Road",
-        code: "SUR",
-        address: "9 Ring Road, Nanpura",
-        city: "Surat",
-        phone: "0261-2457788",
-        gstin: "24AABCA1234M1Z2",
+        name: "Mitesh Jewellers — Babra",
+        code: "BAB",
+        address: "Mahadev Complex, Main Bazaar Rd, Babra",
+        city: "Babra",
+        phone: "094272 61465",
+        gstin: "24AABCA1234M1Z5",
       },
     ])
     .returning();
 
   const password = await hashPassword("Admin@12345");
   const staff = [
-    { name: "Rohan Mehta", email: "admin@aurajewels.in", role: "admin", designation: "Director" },
-    { name: "Priya Shah", email: "manager@aurajewels.in", role: "manager", designation: "Store Manager" },
-    { name: "Amit Verma", email: "cashier@aurajewels.in", role: "cashier", designation: "Head Cashier" },
-    { name: "Sneha Kulkarni", email: "sales@aurajewels.in", role: "salesman", designation: "Sales Executive" },
-    { name: "Karan Desai", email: "accounts@aurajewels.in", role: "accountant", designation: "Accounts Officer" },
+    { name: "Mitesh Patel", email: "admin@miteshjewellers.in", role: "admin", designation: "Owner" },
+    { name: "Priya Shah", email: "manager@miteshjewellers.in", role: "manager", designation: "Showroom Manager" },
+    { name: "Amit Verma", email: "cashier@miteshjewellers.in", role: "cashier", designation: "Head Cashier" },
+    { name: "Sneha Kulkarni", email: "sales@miteshjewellers.in", role: "salesman", designation: "Sales Executive" },
+    { name: "Karan Desai", email: "accounts@miteshjewellers.in", role: "accountant", designation: "Accounts Officer" },
   ];
 
   for (let i = 0; i < staff.length; i++) {
@@ -167,7 +151,7 @@ async function main() {
         effectiveFrom: daysAgo(d, 10),
         source: "IBJA",
         isAuthorized: true,
-        createdBy: "Rohan Mehta",
+        createdBy: "Mitesh Patel",
         note: d === 0 ? "Morning rate card" : null,
       });
     }
@@ -249,7 +233,7 @@ async function main() {
       barcode: `8901234${String(100000 + i)}`,
       name: p.name,
       slug,
-      description: `${p.name} in ${p.purity} ${p.metal}, hand-finished at the Aura atelier. BIS hallmarked with transparent making and wastage charges.`,
+      description: `${p.name} in ${p.purity} ${p.metal}, hand-finished at the Mitesh workshop. BIS hallmarked with transparent making and wastage charges.`,
       categoryId: catId(p.cat),
       branchId: branches[i % branches.length].id,
       metalType: p.metal,
@@ -283,23 +267,23 @@ async function main() {
     weightMg: p.netWeightMg * p.stockQty,
     referenceType: "seed",
     note: "Opening stock",
-    createdBy: "Rohan Mehta",
+    createdBy: "Mitesh Patel",
   }));
   await db.insert(s.stockMovements).values(stockRows);
 
   const customerSeeds = [
-    { name: "Ananya Iyer", mobile: "9820011001", city: "Mumbai", dob: "1990-04-12", anniv: "2016-11-26" },
-    { name: "Vikram Rathore", mobile: "9820022002", city: "Pune", dob: "1984-09-03", anniv: "2012-02-14" },
-    { name: "Neha Kapoor", mobile: "9820033003", city: "Mumbai", dob: "1993-01-22", anniv: "2019-12-08" },
-    { name: "Arjun Nair", mobile: "9820044004", city: "Surat", dob: "1988-07-19", anniv: "2015-05-21" },
-    { name: "Kavya Reddy", mobile: "9820055005", city: "Pune", dob: "1995-03-30", anniv: "2021-01-18" },
-    { name: "Sanjay Agarwal", mobile: "9820066006", city: "Mumbai", dob: "1978-12-11", anniv: "2004-04-27" },
-    { name: "Ritika Jain", mobile: "9820077007", city: "Surat", dob: "1991-08-25", anniv: "2018-07-09" },
-    { name: "Rahul Shetty", mobile: "9820088008", city: "Mumbai", dob: "1986-05-16", anniv: "2013-10-12" },
-    { name: "Pooja Bhatt", mobile: "9820099009", city: "Pune", dob: "1997-11-02", anniv: "2023-03-05" },
-    { name: "Manish Gupta", mobile: "9820010010", city: "Surat", dob: "1982-06-07", anniv: "2009-09-19" },
-    { name: "Shreya Menon", mobile: "9820011011", city: "Mumbai", dob: "1994-02-14", anniv: "2020-06-30" },
-    { name: "Deepak Choudhary", mobile: "9820012012", city: "Pune", dob: "1975-10-09", anniv: "2001-12-01" },
+    { name: "Ananya Iyer", mobile: "9820011001", city: "Babra", dob: "1990-04-12", anniv: "2016-11-26" },
+    { name: "Vikram Rathore", mobile: "9820022002", city: "Amreli", dob: "1984-09-03", anniv: "2012-02-14" },
+    { name: "Neha Kapoor", mobile: "9820033003", city: "Babra", dob: "1993-01-22", anniv: "2019-12-08" },
+    { name: "Arjun Nair", mobile: "9820044004", city: "Rajkot", dob: "1988-07-19", anniv: "2015-05-21" },
+    { name: "Kavya Reddy", mobile: "9820055005", city: "Botad", dob: "1995-03-30", anniv: "2021-01-18" },
+    { name: "Sanjay Agarwal", mobile: "9820066006", city: "Babra", dob: "1978-12-11", anniv: "2004-04-27" },
+    { name: "Ritika Jain", mobile: "9820077007", city: "Bhavnagar", dob: "1991-08-25", anniv: "2018-07-09" },
+    { name: "Rahul Shetty", mobile: "9820088008", city: "Ahmedabad", dob: "1986-05-16", anniv: "2013-10-12" },
+    { name: "Pooja Bhatt", mobile: "9820099009", city: "Amreli", dob: "1997-11-02", anniv: "2023-03-05" },
+    { name: "Manish Gupta", mobile: "9820010010", city: "Rajkot", dob: "1982-06-07", anniv: "2009-09-19" },
+    { name: "Shreya Menon", mobile: "9820011011", city: "Babra", dob: "1994-02-14", anniv: "2020-06-30" },
+    { name: "Deepak Choudhary", mobile: "9820012012", city: "Bhavnagar", dob: "1975-10-09", anniv: "2001-12-01" },
   ];
   const customers = await db
     .insert(s.customers)
@@ -311,8 +295,8 @@ async function main() {
         email: `${c.name.split(" ")[0].toLowerCase()}${i}@example.com`,
         address: `${int(1, 90)} ${pick(["Sunrise", "Palm", "Lotus", "Silver Oak"])} Residency`,
         city: c.city,
-        state: c.city === "Surat" ? "Gujarat" : "Maharashtra",
-        pincode: c.city === "Surat" ? "395001" : c.city === "Pune" ? "411002" : "400002",
+        state: "Gujarat",
+        pincode: c.city === "Babra" ? "365421" : c.city === "Amreli" ? "365601" : c.city === "Rajkot" ? "360001" : c.city === "Bhavnagar" ? "364001" : c.city === "Ahmedabad" ? "380001" : "364710",
         dateOfBirth: c.dob,
         anniversary: c.anniv,
         loyaltyPoints: int(40, 1200),
@@ -594,15 +578,15 @@ async function main() {
   );
 
   await db.insert(s.settings).values([
-    { key: "company_name", value: "Aura Jewels Pvt. Ltd." },
+    { key: "company_name", value: "Mitesh Jewellers" },
     { key: "company_address", value: "12 Kalbadevi Road, Zaveri Bazaar, Mumbai 400002" },
     { key: "company_gstin", value: "27AABCA1234M1Z5" },
     { key: "company_phone", value: "+91 22 2240 1122" },
-    { key: "company_email", value: "care@aurajewels.in" },
+    { key: "company_email", value: "care@miteshjewellers.in" },
     { key: "gst_rate_bp", value: "300" },
     { key: "weight_precision", value: "3" },
     { key: "loyalty_rate_bp", value: "100" },
-    { key: "invoice_footer", value: "Thank you for choosing Aura Jewels. BIS hallmarking on all gold jewellery." },
+    { key: "invoice_footer", value: "Thank you for choosing Mitesh Jewellers. BIS hallmarking on all gold jewellery." },
   ]);
 
   await db.insert(s.documentCounters).values([
@@ -615,9 +599,9 @@ async function main() {
   ]);
 
   await db.insert(s.activityLogs).values([
-    { userName: "Rohan Mehta", action: "rate.updated", entity: "metal_rate", detail: "22K gold revised to ₹9,580/g" },
+    { userName: "Mitesh Patel", action: "rate.updated", entity: "metal_rate", detail: "22K gold revised to ₹9,580/g" },
     { userName: "Priya Shah", action: "purchase.created", entity: "purchase", detail: "PUR-0006 from Chennai Temple Jewellers" },
-    { userName: "Amit Verma", action: "invoice.created", entity: "invoice", detail: "INV-0046 billed at Zaveri Bazaar" },
+    { userName: "Amit Verma", action: "invoice.created", entity: "invoice", detail: "INV-0046 billed at Babra showroom" },
   ]);
 
   console.log(`Seed complete: ${products.length} products, ${customers.length} customers, ${insertedInvoices.length} invoices.`);

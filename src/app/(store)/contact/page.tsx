@@ -1,33 +1,15 @@
 import type { Metadata } from "next";
+import { Clock, CreditCard, MapPin, Phone, Smartphone, Wallet } from "lucide-react";
 import { getLatestRates } from "@/lib/rates";
+import { BRAND } from "@/lib/brand";
 import { paise } from "@/lib/format";
 import { StoreShell } from "@/components/store/store-shell";
 
 export const metadata: Metadata = {
-  title: "Showrooms",
-  description: "Visit Aura Jewels in Zaveri Bazaar, Laxmi Road or Ring Road — or reach us on WhatsApp.",
+  title: "Visit us",
+  description:
+    "Visit Mitesh Jewellers at Mahadev Complex, Main Bazaar Rd, Babra, Gujarat 365421. Open Mon–Sat 9am–8pm, Sun 9am–1pm.",
 };
-
-const SHOWROOMS = [
-  {
-    name: "Zaveri Bazaar",
-    address: "12 Kalbadevi Road, Zaveri Bazaar, Mumbai 400002",
-    phone: "+91 22 2240 1122",
-    hours: "Mon–Sat, 10:30 am – 8:00 pm",
-  },
-  {
-    name: "Laxmi Road",
-    address: "480 Laxmi Road, Sadashiv Peth, Pune 411030",
-    phone: "+91 20 2445 3311",
-    hours: "Mon–Sat, 10:30 am – 8:30 pm",
-  },
-  {
-    name: "Ring Road",
-    address: "Ring Road, Surat 395002",
-    phone: "+91 261 244 8899",
-    hours: "Mon–Sat, 11:00 am – 8:00 pm",
-  },
-];
 
 export default async function ContactPage() {
   const rates = await getLatestRates();
@@ -38,47 +20,112 @@ export default async function ContactPage() {
 
   return (
     <StoreShell rates={ticker}>
-      <div className="mx-auto max-w-6xl px-4 py-12">
-        <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-gold-deep">Visit us</p>
-        <h1 className="mt-2 font-display text-3xl sm:text-4xl">Three showrooms, one standard</h1>
-        <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground">
+      <div className="mx-auto max-w-6xl px-4 py-14">
+        <p className="eyebrow">Visit us</p>
+        <h1 className="mt-3 max-w-2xl font-display text-4xl leading-tight sm:text-5xl">
+          One showroom, in the heart of Babra.
+        </h1>
+        <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground">
           Walk in for a bridal consultation, a repair estimate or an old-gold valuation. No
-          appointment needed — but a call ahead means we can keep the pieces you want ready.
+          appointment needed — a call ahead means we can keep the pieces you want ready.
         </p>
 
-        <div className="mt-8 grid gap-4 sm:grid-cols-3">
-          {SHOWROOMS.map((showroom) => (
-            <div key={showroom.name} className="rounded-xl border border-border bg-card p-5">
-              <p className="font-display text-lg">{showroom.name}</p>
-              <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{showroom.address}</p>
-              <p className="mt-3 text-xs">{showroom.phone}</p>
-              <p className="mt-1 text-[11px] text-muted-foreground">{showroom.hours}</p>
+        <div className="mt-10 grid gap-4 lg:grid-cols-[1.15fr_1fr]">
+          <div className="rounded-[26px] border border-border bg-card p-6 shadow-soft">
+            <div className="flex items-start gap-3">
+              <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-gold-soft">
+                <MapPin className="size-4 text-gold-deep" />
+              </span>
+              <div>
+                <p className="font-display text-xl">{BRAND.name}</p>
+                <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+                  {BRAND.addressLines[0]}
+                  <br />
+                  {BRAND.addressLines[1]}
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-6 grid gap-3 sm:grid-cols-2">
+              <div className="rounded-xl border border-border p-4">
+                <p className="flex items-center gap-1.5 text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
+                  <Clock className="size-3" /> Opening hours
+                </p>
+                <ul className="mt-2 space-y-1.5 text-xs">
+                  {BRAND.hours.map((slot) => (
+                    <li key={slot.days} className="flex justify-between gap-2">
+                      <span className="text-muted-foreground">{slot.days}</span>
+                      <span className="tabular font-medium">{slot.time}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="rounded-xl border border-border p-4">
+                <p className="flex items-center gap-1.5 text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
+                  <Wallet className="size-3" /> Payments accepted
+                </p>
+                <ul className="mt-2 space-y-1.5 text-xs">
+                  {BRAND.payments.map((payment) => (
+                    <li key={payment} className="flex items-center gap-1.5">
+                      {payment.toLowerCase().includes("card") ? (
+                        <CreditCard className="size-3 text-gold-deep" />
+                      ) : (
+                        <Smartphone className="size-3 text-gold-deep" />
+                      )}
+                      {payment}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <div className="mt-4 flex flex-wrap gap-2">
               <a
-                href={`tel:${showroom.phone.replace(/\s/g, "")}`}
-                className="mt-4 inline-flex h-9 items-center rounded-full border border-border px-4 text-xs font-medium hover:bg-muted"
+                href={BRAND.phoneHref}
+                className="inline-flex h-11 items-center gap-2 rounded-full bg-primary px-5 text-xs font-medium text-primary-foreground hover:bg-primary/90"
               >
-                Call the showroom
+                <Phone className="size-3.5" /> {BRAND.phone}
+              </a>
+              <a
+                href={BRAND.mapsHref}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex h-11 items-center gap-2 rounded-full border border-border px-5 text-xs font-medium hover:border-gold/50 hover:bg-gold-soft/40"
+              >
+                <MapPin className="size-3.5 text-gold-deep" /> Get directions
               </a>
             </div>
-          ))}
-        </div>
-
-        <div className="mt-10 grid gap-4 rounded-2xl border border-border bg-secondary/40 p-6 sm:grid-cols-2">
-          <div>
-            <h2 className="font-display text-xl">Buyback &amp; exchange</h2>
-            <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
-              Bring your Aura invoice and the piece. We test purity in front of you, weigh to the
-              milligram and quote the metal value at the day&apos;s rate, less the printed
-              melting loss. You can take cash, bank transfer or adjust against a new purchase.
-            </p>
           </div>
-          <div>
-            <h2 className="font-display text-xl">Repairs &amp; resizing</h2>
+
+          <div className="rounded-[26px] border border-border bg-secondary/50 p-6">
+            <p className="eyebrow">Find us online</p>
             <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
-              Clasp repairs, re-polishing, ring resizing and re-stringing are handled in-house. We
-              photograph the item at intake, give you a job number and message you when it is ready
-              for pickup.
+              Browse our latest designs, wholesale enquiries and customer reviews on the platforms
+              below.
             </p>
+            <ul className="mt-4 space-y-2">
+              {BRAND.profiles.map((profile) => (
+                <li key={profile.label}>
+                  <a
+                    href={profile.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center justify-between rounded-xl border border-border bg-card px-4 py-3 text-xs font-medium transition-colors hover:border-gold/50"
+                  >
+                    {BRAND.name} on {profile.label}
+                    <span className="text-gold-deep">→</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-6 rounded-xl border border-gold/30 bg-gold-soft/50 p-4">
+              <p className="text-xs font-semibold">Buyback, exchange &amp; repairs</p>
+              <p className="mt-1.5 text-[11px] leading-relaxed text-muted-foreground">
+                Bring your invoice and the piece. Purity is tested in front of you, weighed to the
+                milligram and valued at the day&apos;s rate. Repairs carry a job number and a
+                promised date.
+              </p>
+            </div>
           </div>
         </div>
       </div>

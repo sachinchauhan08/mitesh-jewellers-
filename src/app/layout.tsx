@@ -22,22 +22,22 @@ const display = Cormorant_Garamond({
 
 export const metadata: Metadata = {
   title: {
-    default: "Aura Jewels — Fine Jewellery & ERP",
-    template: "%s · Aura Jewels",
+    default: "Mitesh Jewellers — Gold & Silver Jewellery, Babra",
+    template: "%s · Mitesh Jewellers",
   },
   description:
-    "Aura Jewels: BIS-hallmarked gold, diamond and bridal jewellery, with a complete jewellery ERP for billing, inventory, rates and customer care.",
-  applicationName: "Aura Jewels",
+    "Mitesh Jewellers, Babra: BIS-hallmarked gold and silver jewellery with live metal rates, transparent making charges and lifetime exchange. Complete jewellery ERP for billing, inventory and customer care.",
+  applicationName: "Mitesh Jewellers",
   manifest: "/manifest.webmanifest",
   appleWebApp: {
     capable: true,
-    title: "Aura Jewels",
+    title: "Mitesh Jewellers",
     statusBarStyle: "black-translucent",
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#211b15",
+  themeColor: "#1b1611",
   width: "device-width",
   initialScale: 1,
 };

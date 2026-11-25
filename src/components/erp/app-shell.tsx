@@ -135,10 +135,10 @@ function NavList({
                   href={item.href}
                   onClick={onNavigate}
                   className={cn(
-                    "group flex h-10 items-center gap-3 rounded-md px-3 text-sm transition-colors",
+                    "group relative flex h-10 items-center gap-3 rounded-lg px-3 text-sm transition-all",
                     active
-                      ? "bg-sidebar-accent text-sidebar-primary"
-                      : "text-sidebar-foreground/70 hover:bg-sidebar-accent/60 hover:text-sidebar-foreground",
+                      ? "bg-sidebar-accent text-sidebar-primary shadow-[inset_0_0_0_1px_var(--sidebar-border)]"
+                      : "text-sidebar-foreground/65 hover:bg-sidebar-accent/50 hover:text-sidebar-foreground",
                   )}
                 >
                   <item.icon
@@ -149,7 +149,7 @@ function NavList({
                   />
                   <span className="truncate">{item.label}</span>
                   {active ? (
-                    <span className="ml-auto size-1.5 rounded-full bg-sidebar-primary" />
+                    <span className="ml-auto h-4 w-[2px] rounded-full bg-sidebar-primary" />
                   ) : null}
                 </Link>
               );
@@ -164,15 +164,15 @@ function NavList({
 function Brand() {
   return (
     <Link href="/dashboard" className="flex items-center gap-3 px-3">
-      <span className="flex size-9 items-center justify-center rounded-full border border-sidebar-primary/40 bg-sidebar-accent">
+      <span className="flex size-10 items-center justify-center rounded-full border border-sidebar-primary/45 bg-gradient-to-br from-sidebar-accent to-sidebar">
         <Gem className="size-4 text-sidebar-primary" />
       </span>
       <span className="leading-tight">
-        <span className="block font-display text-xl tracking-wide text-sidebar-foreground">
-          Aura Jewels
+        <span className="block font-display text-[21px] tracking-wide text-sidebar-foreground">
+          Mitesh Jewellers
         </span>
-        <span className="block text-[10px] uppercase tracking-[0.28em] text-sidebar-foreground/40">
-          Jewellery ERP
+        <span className="mt-0.5 block text-[9px] uppercase tracking-[0.3em] text-sidebar-foreground/40">
+          Babra · Jewellery ERP
         </span>
       </span>
     </Link>
@@ -262,7 +262,7 @@ export function AppShell({
 
   return (
     <div className="min-h-screen bg-background">
-      <aside className="fixed inset-y-0 left-0 z-30 hidden w-[264px] flex-col border-r border-sidebar-border bg-sidebar lg:flex">
+      <aside className="fixed inset-y-0 left-0 z-30 hidden w-[264px] flex-col border-r border-sidebar-border bg-sidebar shadow-[1px_0_0_oklch(1_0_0/0.04)] lg:flex">
         <div className="flex h-20 items-center">
           <Brand />
         </div>
@@ -270,7 +270,7 @@ export function AppShell({
           <NavList role={user.role} />
         </div>
         <div className="space-y-3 border-t border-sidebar-border p-3">
-          <div className="rounded-lg border border-sidebar-border px-3 py-2.5">
+          <div className="rounded-xl border border-sidebar-border bg-sidebar-accent/30 px-3 py-2.5">
             <p className="text-[10px] uppercase tracking-[0.2em] text-sidebar-foreground/35">
               Today&apos;s rate
             </p>

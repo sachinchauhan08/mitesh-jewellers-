@@ -1,11 +1,11 @@
 {
-  "name": "Aura Jewels",
-  "short_name": "Aura",
-  "description": "BIS-hallmarked gold, diamond and bridal jewellery, with live metal rates.",
+  "name": "Mitesh Jewellers",
+  "short_name": "Mitesh",
+  "description": "Gold and silver jewellery in Babra, Gujarat \u2014 hallmarked, with live metal rates.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#fbf8f2",
-  "theme_color": "#211b15",
+  "theme_color": "#1b1611",
   "icons": [
     {
       "src": "/icon.svg",

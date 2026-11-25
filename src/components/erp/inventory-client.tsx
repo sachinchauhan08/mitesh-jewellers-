@@ -144,7 +144,7 @@ export function InventoryClient({
     const sheet = XLSX.utils.json_to_sheet(rows);
     const book = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(book, sheet, "Inventory");
-    XLSX.writeFile(book, `aura-inventory-${new Date().toISOString().slice(0, 10)}.xlsx`);
+    XLSX.writeFile(book, `mitesh-inventory-${new Date().toISOString().slice(0, 10)}.xlsx`);
     toast.success(`Exported ${rows.length} products`);
   }
 

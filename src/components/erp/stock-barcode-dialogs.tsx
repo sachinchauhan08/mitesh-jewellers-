@@ -198,7 +198,7 @@ export function BarcodeDialog({
         .meta{margin-top:8px;font-size:11px;display:flex;justify-content:space-between}
         svg{max-width:100%}
       </style></head><body>
-      <h1>Aura Jewels</h1>
+      <h1>Mitesh Jewellers</h1>
       <p>${product.name}</p>
       <div class="row"><img src="${qr}" /><div>${svgRef.current.outerHTML}</div></div>
       <div class="meta"><span>${product.purity} ${product.metalType} · ${(product.netWeightMg / 1000).toFixed(3)} g</span><span>${paise(product.sellingPricePaise)}</span></div>

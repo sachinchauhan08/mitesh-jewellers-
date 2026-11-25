@@ -90,7 +90,7 @@ export default async function ProductPage({
 
         <div className="mt-5 grid gap-8 lg:grid-cols-2">
           <div className="space-y-3">
-            <div className="aspect-square overflow-hidden rounded-2xl border border-border bg-muted">
+            <div className="aspect-square overflow-hidden rounded-[26px] border border-border bg-muted shadow-luxe">
               {product.images[0] ? (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img src={product.images[0]} alt={product.name} className="size-full object-cover" />
@@ -109,7 +109,7 @@ export default async function ProductPage({
           </div>
 
           <div>
-            <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-gold-deep">
+            <p className="eyebrow">
               {row.categoryName}
             </p>
             <h1 className="mt-2 font-display text-3xl leading-tight sm:text-4xl">{product.name}</h1>
@@ -117,7 +117,7 @@ export default async function ProductPage({
               {product.purity} {product.metalType} · {grams(product.netWeightMg)} net
             </p>
 
-            <p className="tabular mt-5 text-3xl font-semibold">{paise(pricePaise)}</p>
+            <p className="tabular mt-6 font-display text-4xl font-semibold tracking-tight">{paise(pricePaise)}</p>
             <p className="mt-1 text-[11px] text-muted-foreground">
               Inclusive of 3% GST · rate {paise(rate)}/g
             </p>
@@ -148,7 +148,7 @@ export default async function ProductPage({
               </p>
             </div>
 
-            <div className="mt-6 rounded-xl border border-border bg-card p-4">
+            <div className="mt-6 rounded-2xl border border-border bg-card p-5 shadow-soft">
               <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
                 Price breakdown
               </p>
@@ -194,7 +194,7 @@ export default async function ProductPage({
         </div>
 
         <div className="mt-10 grid gap-6 lg:grid-cols-[1fr_320px]">
-          <div className="rounded-xl border border-border bg-card p-5">
+          <div className="rounded-2xl border border-border bg-card p-6 shadow-soft">
             <h2 className="flex items-center gap-2 font-display text-xl">
               <Gem className="size-4 text-gold-deep" /> Specification
             </h2>
@@ -207,7 +207,7 @@ export default async function ProductPage({
               ))}
             </dl>
           </div>
-          <div className="rounded-xl border border-gold/30 bg-gold-soft/50 p-5 text-xs leading-relaxed text-muted-foreground">
+          <div className="rounded-2xl border border-gold/30 bg-gold-soft/50 p-6 text-xs leading-relaxed text-muted-foreground">
             <p className="font-display text-lg text-foreground">Made to be worn daily</p>
             <p className="mt-2">
               Gold purity is verified at intake and again before billing. If you need a size
@@ -225,7 +225,7 @@ export default async function ProductPage({
                 <Link
                   key={item.id}
                   href={`/shop/${item.slug}`}
-                  className="group overflow-hidden rounded-xl border border-border bg-card"
+                  className="group overflow-hidden rounded-2xl border border-border bg-card card-lift"
                 >
                   <div className="aspect-square overflow-hidden bg-muted">
                     {item.images[0] ? (

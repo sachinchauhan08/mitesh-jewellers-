@@ -32,11 +32,11 @@ export default async function AuthLayout({
             <span className="flex size-10 items-center justify-center rounded-full border border-[#c8a86a]/50">
               <Gem className="size-5 text-[#c8a86a]" />
             </span>
-            <span className="text-sm uppercase tracking-[0.35em]">Aura Jewels</span>
+            <span className="text-sm uppercase tracking-[0.35em]">Mitesh Jewellers</span>
           </Link>
           <div className="max-w-md space-y-5">
             <p className="text-xs uppercase tracking-[0.3em] text-[#c8a86a]">
-              Jewellery ERP · Est. 1974
+              Jewellery ERP · Babra, Gujarat
             </p>
             <h1 className="font-display text-5xl leading-[1.05]">
               Every gram, every rupee, accounted for.
@@ -47,11 +47,11 @@ export default async function AuthLayout({
             </p>
           </div>
           <div className="flex items-center gap-6 text-xs text-[#e6d9c6]/60">
-            <span>3 showrooms</span>
+            <span>Babra showroom</span>
             <span className="h-3 w-px bg-[#e6d9c6]/20" />
             <span>BIS hallmarked</span>
             <span className="h-3 w-px bg-[#e6d9c6]/20" />
-            <span>Since 1974</span>
+            <span>Gold &amp; silver</span>
           </div>
         </div>
       </div>
@@ -59,7 +59,7 @@ export default async function AuthLayout({
         <div className="flex items-center justify-between p-6 lg:justify-end">
           <Link href="/" className="flex items-center gap-2 lg:hidden">
             <Gem className="size-5 text-gold-deep" />
-            <span className="text-sm uppercase tracking-[0.25em]">Aura</span>
+            <span className="text-sm uppercase tracking-[0.25em]">Mitesh</span>
           </Link>
           <Link
             href="/"

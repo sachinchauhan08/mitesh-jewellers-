@@ -62,7 +62,7 @@ export function InvoiceDocument({
     <div className="mx-auto w-full max-w-[820px] bg-white p-8 text-[#211b15] shadow-sm print:shadow-none">
       <div className="flex items-start justify-between gap-6 border-b border-[#e6ddcf] pb-6">
         <div>
-          <p className="font-display text-3xl tracking-wide">Aura Jewels</p>
+          <p className="font-display text-3xl tracking-wide">Mitesh Jewellers</p>
           <p className="mt-1 max-w-[280px] text-xs leading-relaxed text-[#6b5d4d]">
             {settings.company_address}
           </p>
@@ -194,14 +194,14 @@ export function InvoiceDocument({
             </span>
           </div>
           <div className="mt-6 border-t border-[#e6ddcf] pt-6 text-center text-[10px] text-[#8a7965]">
-            <p>For Aura Jewels</p>
+            <p>For Mitesh Jewellers</p>
             <p className="mt-8 border-t border-[#d8cbb6] pt-1">Authorised signatory</p>
           </div>
         </div>
       </div>
 
       <p className="mt-6 border-t border-[#e6ddcf] pt-3 text-center text-[10px] text-[#8a7965]">
-        Thank you for choosing Aura Jewels · BIS hallmarked · {settings.company_email}
+        Thank you for choosing Mitesh Jewellers · BIS hallmarked · {settings.company_email}
       </p>
     </div>
   );
