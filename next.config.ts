@@ -16,12 +16,14 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  allowedDevOrigins: ['*'],
+  allowedDevOrigins: [
+    "*.e2b.app",
+    "4000-ixrisep3m5r40w4pmkg03.e2b.app",
+    "localhost:4000",
+    "127.0.0.1:4000",
+  ],
   typescript: {
     ignoreBuildErrors: true,
-  },
-  eslint: {
-    ignoreDuringBuilds: true,
   },
   turbopack: {
     rules: {
