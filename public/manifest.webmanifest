@@ -1,0 +1,17 @@
+{
+  "name": "Aura Jewels",
+  "short_name": "Aura",
+  "description": "BIS-hallmarked gold, diamond and bridal jewellery, with live metal rates.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fbf8f2",
+  "theme_color": "#211b15",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

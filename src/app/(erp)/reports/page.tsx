@@ -58,7 +58,7 @@ export default async function ReportsPage({
         productId: salesItems.productId,
         name: products.name,
         qty: salesItems.qty,
-        weightMg: salesItems.weightMg,
+        weightMg: salesItems.netWeightMg,
         totalPaise: salesItems.totalPaise,
       })
       .from(salesItems)
@@ -123,6 +123,7 @@ export default async function ReportsPage({
 
   const productMap = new Map<number, { name: string; qty: number; weightMg: number; total: number }>();
   for (const item of itemRows) {
+    if (item.productId == null) continue;
     const current = productMap.get(item.productId) ?? {
       name: item.name,
       qty: 0,
